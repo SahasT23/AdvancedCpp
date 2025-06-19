@@ -1,0 +1,10 @@
+1.
+Stack, Heap allocation and data structures.
+stack and heap structures explained and how they work.
+2.
+unique, shared and weak pointers explained.
+memory allocation and fragmentation.
+3. 
+Pointer types,
+Pointer issues
+Pointer maths.

@@ -1,0 +1,10 @@
+1. 
+• Threads: std::thread for independent execution; manage join/detach carefully.
+• Mutexes: std::mutex, std::recursive_mutex; use std::lock_guard or std::unique_lock for RAII.
+• Condition Variables: std::condition_variable for thread synchronisation; use with std::unique_lock.
+• Atomic Operations: std::atomic for lock-free operations; supports std::memory_order for fine-grained
+control.
+• Thread Pools: Implement via std::async or custom pools for task distribution.
+2.
+Locks
+Concurrency
