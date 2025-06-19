@@ -8,3 +8,5 @@ memory allocation and fragmentation.
 Pointer types,
 Pointer issues
 Pointer maths.
+
+Add questions and answers
