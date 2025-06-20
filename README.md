@@ -301,3 +301,6 @@ mentation and practical applications.
 • Networking: Tries for IP routing; disjoint sets for network clustering.
 • Game Development: Quadtrees for spatial partitioning; A* with heaps for pathfinding.
 • Bioinformatics: Suffix arrays for sequence alignment; tries for pattern matching.
+
+
+Need to add makefiles and more on cache and compiler optimisation. 
