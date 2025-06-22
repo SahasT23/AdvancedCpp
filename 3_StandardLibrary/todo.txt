@@ -4,3 +4,60 @@ iterators,
 utilities
 
 Add questions and answers
+
+C++ Standard Library
+4.1 Overview
+The C++ Standard Library provides a rich set of tools for efficient programming, including containers,
+algorithms, utilities, and more. Below is an exhaustive exploration of key components and their advanced
+usage.
+4.2 Containers
+• Sequence Containers:
+– std::vector: Dynamic array; O(1) random access, O(n) insertion/deletion at middle. Use reserve to
+preallocate capacity.
+– std::deque: Double-ended queue; O(1) push/pop at ends, amortised O(1) random access.
+– std::list: Doubly-linked list; O(1) insertion/deletion, O(n) random access. Use for frequent modifica-
+tions.
+– std::forward_list: Singly-linked list; minimal memory overhead, no reverse iteration.
+– std::array: Fixed-size array; stack-allocated, O(1) access, no dynamic resizing.
+• Associative Containers:
+– std::set/std::multiset: Sorted unique/multiple keys; O(log n) operations via red-black trees.
+– std::map/std::multimap: Sorted key-value pairs; O(log n) operations.
+– std::unordered_set/std::unordered_map: Hash-based; O(1) average-case operations. Custom hash
+functions via std::hash.
+• Container Adaptors:
+– std::stack: LIFO; backed by std::deque or std::vector.
+– std::queue: FIFO; similar backing.
+– std::priority_queue: Heap-based; O(log n) push/pop, O(1) top.
+4.3 Algorithms
+• Sorting: std::sort, std::stable_sort, std::partial_sort; custom comparators for flexibility.
+• Searching: std::binary_search, std::lower_bound, std::upper_bound for sorted ranges; std::find for
+unsorted.
+• Transformations: std::transform, std::copy, std::move for range operations.
+• Numeric: std::accumulate, std::inner_product, std::partial_sum for mathematical operations.
+• Parallel Execution: Use std::execution::par or std::execution::par_unseq (C++17) for parallel algorithms.
+4.4 Iterators
+• Types: Input, output, forward, bidirectional, random-access, contiguous (C++20).
+• Utilities: std::begin/std::end, std::next, std::prev, std::distance.
+• Ranges (C++20): Use std::ranges::sort, std::ranges::views::filter for expressive, safe range operations.
+4.5 Memory Utilities
+• std::allocator: Custom memory allocation for containers.
+• std::make_unique/std::make_shared: Safe, exception-safe smart pointer creation.
+• std::pmr::memory_resource: Polymorphic allocators for flexible memory management (C++17).
+4
+4.6 String Handling
+• std::string: Dynamic string; supports concatenation, substring, and searching.
+• std::string_view: Non-owning string view; O(1) substring operations, ideal for parsing.
+• std::to_string/std::from_string: Numeric-string conversions (C++20).
+• std::format: Type-safe string formatting (C++20); e.g., std::format("Value: ", x).
+4.7 Utilities
+• std::optional: Represents optional values; avoids null checks.
+• std::variant: Type-safe union; supports visitor pattern.
+• std::any: Type-safe container for any type; useful for dynamic typing.
+• std::bitset: Fixed-size bit manipulation; efficient for flags or bitmasks.
+• std::chrono: Time utilities; e.g., std::chrono::steady_clock for monotonic time.
+• std::filesystem: File system operations (C++17); e.g., std::filesystem::path.
+4.8 Usage Guidelines
+• Prefer std::string_view for read-only string operations to avoid copies.
+• Use std::ranges for modern, expressive algorithms.
+• Leverage std::optional/std::variant for robust type handling.
+• Minimise allocator overhead with std::pmr::monotonic_buffer_resource for temporary allocations.

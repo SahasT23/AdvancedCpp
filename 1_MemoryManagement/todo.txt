@@ -10,3 +10,63 @@ Pointer issues
 Pointer maths.
 
 Add questions and answers
+
+Memory Management
+2.1 Overview
+Effective memory management in C++ is crucial for preventing leaks, undefined behaviour, and perfor-
+mance degradation, especially in complex applications.
+2.2 Key Concepts
+• Stack vs. Heap Allocation:
+– Stack: Automatic allocation for local variables; fast but limited (typically 1–8 MB). Stack overflow
+occurs with excessive recursion or large objects.
+– Heap: Dynamic allocation via new, delete; slower due to manual management, prone to fragmen-
+tation. Use std::pmr::memory_resource for polymorphic allocators.
+– Strategies: Prefer stack for small, short-lived objects; use heap for large or persistent data.
+• Smart Pointers:
+– std::unique_ptr: Exclusive ownership, non-copyable, movable; enforces RAII for deterministic
+cleanup.
+– std::shared_ptr: Reference-counted shared ownership; atomic counter updates ensure thread
+safety.
+– std::weak_ptr: Non-owning reference to shared_ptr; breaks cyclic dependencies.
+– Custom deleters: Use with std::unique_ptr or std::shared_ptr for resource-specific cleanup (e.g., file
+handles).
+• Memory Alignment:
+– Use alignas to align data for SIMD operations or hardware requirements.
+– Check alignment with alignof; misaligned access causes performance penalties or crashes on some
+architectures.
+• Custom Allocators:
+– Implement std::allocator-compatible allocators for containers like std::vector.
+– Example: Stack-based allocators for temporary buffers; arena allocators for object pools.
+– Use std::pmr for polymorphic memory resources in C++17+.
+• Memory Fragmentation:
+– External fragmentation: Mitigate with slab allocators.
+– Internal fragmentation: Minimise with small-object optimisations.
+2.3 Pointer Types and Issues
+• Raw Pointers (T*): Direct memory access; no ownership semantics. Risks include dangling pointers,
+null dereferences, and memory leaks.
+• Const Pointers:
+– const T*: Pointer to constant data; data cannot be modified.
+– T* const: Constant pointer; pointer cannot be reassigned.
+– const T* const: Both pointer and data are constant.
+• Function Pointers: Syntax: void (*func)(int); used for callbacks or dynamic dispatch. Risks: Type
+mismatches, null dereferences.
+• Void Pointers (void*): Generic pointers; require explicit casting. Risks: Type safety violations, align-
+ment issues.
+2
+• Pointer to Pointer (T**): Used in dynamic 2D arrays or passing pointers by reference. Risks: Complex
+lifetime management, double-free errors.
+• Member Pointers: Point to class members (data or functions); syntax: int T::*. Used in reflection-like
+systems. Risks: Invalid object access.
+• Array Pointers (T(*)[]): Distinct from pointer-to-array; used in C-style APIs. Risks: Buffer overflows,
+decay to T*.
+• Smart Pointer Variants:
+– std :: unique_ptr < T [] >: Array-specialised unique pointer; uses delete[].
+– std::shared_ptr with aliasing constructor: Shares ownership of subobjects.
+• Pointer Arithmetic: Common in low-level code; risks include out-of-bounds access, undefined be-
+haviour. Use std::span for safer bounds checking.
+• Common Issues:
+– Dangling pointers: Accessing freed memory.
+– Null dereferences: Accessing nullptr or uninitialised pointers.
+– Double-free: Deallocating memory twice, causing undefined behaviour.
+– Memory leaks: Forgetting to deallocate heap memory.
+– Type punning: Reinterpreting memory via void* or reinterpret_cast, violating strict aliasing rules.

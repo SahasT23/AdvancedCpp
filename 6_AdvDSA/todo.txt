@@ -1,1 +1,54 @@
 Add questions and answers
+
+7 Advanced Data Structures and Applications
+7.1 Overview
+Advanced data structures are critical for optimising specific use cases. This section details their imple-
+mentation and practical applications.
+7.2 Data Structures and Use Cases
+• B-Trees:
+– Structure: Balanced tree with multiple keys per node; order m defines node capacity.
+– Application: Database indexing (e.g., MySQL); file systems (e.g., NTFS).
+– Operations: O(log n) search, insert, delete; minimises disk I/O.
+– Implementation: Use std::vector for node storage; balance during splits/merges.
+• Trie (Prefix Tree):
+– Structure: Tree where nodes represent characters; paths form strings.
+– Application: Autocomplete, spell checkers, IP routing.
+– Operations: O(m) search/insert/delete, where m is key length.
+– Implementation: Use std::unordered_map for children; compress paths for efficiency.
+• Fenwick Tree (Binary Indexed Tree):
+– Structure: Array-based tree for cumulative queries.
+– Application: Range sum queries, real-time analytics.
+– Operations: O(log n) update/query; compact memory.
+– Implementation: Use bit manipulation for tree traversal; extend for range updates.
+• Segment Tree:
+– Structure: Binary tree for range queries/updates.
+– Application: Range minimum/maximum, computational geometry.
+– Operations: O(log n) query/update; lazy propagation for range updates.
+– Implementation: Use recursive structure; store function objects for custom operations.
+• Disjoint Set (Union-Find):
+– Structure: Forest with path compression, union by rank.
+– Application: Graph connectivity, Kruskal’s MST algorithm.
+– Operations: Near O(1) with optimisations (inverse Ackermann).
+– Implementation: Use std::vector for parent/rank arrays.
+• Suffix Array:
+– Structure: Sorted array of string suffixes.
+– Application: String matching, bioinformatics (DNA analysis).
+– Operations: O(n log n) construction; O(log n) searches with LCP.
+– Implementation: Use DC3 algorithm; pair with LCP array.
+• Skip List:
+8
+– Structure: Probabilistic layered linked list; mimics balanced trees.
+– Application: Concurrent key-value stores, lock-free data structures.
+– Operations: O(log n) average-case search/insert/delete.
+– Implementation: Use random levels; ensure thread safety with atomics.
+7.3 Implementation Considerations
+• Memory Efficiency: Use memory pools or std::pmr for large structures.
+• Thread Safety: Implement lock-free versions (e.g., concurrent tries) using std::atomic.
+• Cache Optimisation: Ensure contiguous memory access; align nodes to cache lines.
+• Generic Programming: Use templates for type-agnostic structures; constrain with concepts.
+7.4 Practical Applications
+• Database Systems: B-trees for indexing; suffix arrays for full-text search.
+• Real-Time Systems: Segment trees for dynamic queries; Fenwick trees for analytics.
+• Networking: Tries for IP routing; disjoint sets for network clustering.
+• Game Development: Quadtrees for spatial partitioning; A* with heaps for pathfinding.
+• Bioinformatics: Suffix arrays for sequence alignment; tries for pattern matching.

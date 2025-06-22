@@ -10,3 +10,24 @@ Locks
 Concurrency
 
 Add questions and answers
+
+5 Multithreading and Concurrency
+5.1 Core Concepts
+• Threads: std::thread for independent execution; manage join/detach carefully.
+• Mutexes: std::mutex, std::recursive_mutex; use std::lock_guard or std::unique_lock for RAII.
+• Condition Variables: std::condition_variable for thread synchronisation; use with std::unique_lock.
+• Atomic Operations: std::atomic for lock-free operations; supports std::memory_order for fine-grained
+control.
+• Thread Pools: Implement via std::async or custom pools for task distribution.
+5.2 Advanced Techniques
+• Lock-Free Programming: Use std::atomic with compare_exchange_strong for wait-free algorithms.
+• Futures and Promises: std::future/std::promise for asynchronous results; std::shared_future for multi-
+ple consumers.
+• Parallel Algorithms: std::execution::par for parallel std::sort, std::transform, etc.
+• Read-Write Locks: std::shared_mutex for concurrent reads, exclusive writes.
+• Task-Based Parallelism: Use std::packaged_task for flexible task scheduling.
+5.3 Common Pitfalls
+• Deadlocks: Prevent with lock ordering or std::scoped_lock.
+• Race Conditions: Use std::atomic or mutexes for shared data.
+• Thread Overhead: Reuse threads via pools to avoid creation/destruction costs.
+• False Sharing: Pad data structures to avoid cache-line contention.

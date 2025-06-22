@@ -1,1 +1,88 @@
 1. Add questions and answers
+
+6 Object-Oriented Programming (Advanced)
+6.1 Overview
+Advanced OOP in C++ leverages language features to create flexible, maintainable, and high-performance
+systems. This section explores sophisticated techniques for designing robust class hierarchies and
+managing object interactions.
+6.2 Core Principles
+• Encapsulation: Restrict access via private/protected; expose interfaces via public methods or get-
+ters/setters.
+• Inheritance: Use for “is-a” relationships; prefer composition for “has-a” relationships.
+• Polymorphism: Achieve via virtual functions and interfaces; ensure proper destructor virtualisation.
+• Abstraction: Define abstract base classes with pure virtual functions (virtual void func() = 0).
+6.3 Advanced OOP Techniques
+• CRTP (Curiously Recurring Template Pattern):
+– Structure: template<typename Derived> class Base ; class Derived : Base<Derived> ;.
+– Use Case: Static polymorphism; e.g., compile-time method dispatching without virtual function
+overhead.
+– Example: Type-safe method chaining or static interfaces.
+– Advantages: Zero runtime cost; enables compile-time type checking.
+– Pitfalls: Complex syntax; requires careful design to avoid code bloat.
+• Mixin Pattern:
+– Structure: Combine small, reusable classes via multiple inheritance or CRTP.
+– Use Case: Add orthogonal functionality (e.g., logging, serialisation) to classes.
+– Example: class LoggerMixin protected: void log() ; class MyClass : public Base, public LoggerMixin
+;.
+– Advantages: Modular design; avoids deep inheritance hierarchies.
+– Pitfalls: Diamond problem in multiple inheritance; use virtual inheritance sparingly.
+• Virtual Function Optimisation:
+– Use final to prevent overriding; enables devirtualisation.
+– Use override to ensure correct override semantics.
+– Avoid deep virtual hierarchies to minimise vtable overhead.
+– Consider std::function or std::variant for type erasure instead of virtual functions.
+• Type Erasure:
+– Structure: Hide concrete types behind a uniform interface; e.g., std::any or custom type-erased
+wrappers.
+– Use Case: Heterogeneous containers (e.g., storing different shapes in a std::vector).
+– Example: class Shape virtual void draw() = 0; ; struct AnyShape std::unique_ptr<Shape> ptr; ;.
+– Advantages: Flexibility; decouples interface from implementation.
+– Pitfalls: Heap allocation overhead; requires careful lifetime management.
+• Policy-Based Design:
+– Structure: Use template parameters to inject behaviour; e.g., template<typename Policy> class
+Object ;.
+6
+– Use Case: Customise class behaviour (e.g., memory allocation, threading model) at compile time.
+– Example: template<typename Alloc> class Container ; using MyContainer = Container<std::allocator<int»;.
+– Advantages: High flexibility; zero runtime cost.
+– Pitfalls: Increased compile time; complex error messages.
+• Resource Management with RAII:
+– Structure: Tie resource lifetime to object scope; e.g., std::unique_ptr, std::lock_guard.
+– Use Case: File handles, mutexes, memory, network sockets.
+– Example: class File std::unique_ptr<FILE> handle; public: File(const char* path) : handle(fopen(path,
+"r")) ;.
+– Advantages: Exception-safe; deterministic cleanup.
+– Pitfalls: Ensure copy/move semantics are correct (e.g., rule of five).
+• Factory Patterns:
+– Structure: Abstract factory, factory method, or static factory for object creation.
+– Use Case: Decouple object creation from usage; support dependency injection.
+– Example: class Factory public: std::unique_ptr<Base> create(); ;.
+– Advantages: Encapsulates creation logic; supports polymorphism.
+– Pitfalls: Can introduce complexity; ensure thread safety if shared.
+• Visitor Pattern:
+– Structure: Double dispatch to separate algorithms from object structure.
+– Use Case: Traverse complex object hierarchies (e.g., AST in compilers).
+– Example: class Visitor virtual void visit(Node1) = 0; ; class Node virtual void accept(Visitor) = 0; ;.
+– Advantages: Extensible operations without modifying classes.
+– Pitfalls: Invasive; requires modifying base classes to add new types.
+• Concepts (C++20):
+– Structure: Define type constraints; e.g., template<typename T> concept Numeric = std::is_arithmetic_v<T>;.
+– Use Case: Restrict template parameters for better error messages and type safety.
+– Example: template<Numeric T> T add(T a, T b) return a + b; ;.
+– Advantages: Clearer interfaces; compile-time checks.
+– Pitfalls: Requires C++20; learning curve for complex constraints.
+6.4 OOP Design Patterns
+• Singleton: Ensure single instance; use std::call_once for thread-safe initialisation.
+• Observer: Event-driven systems; use std::function for callbacks.
+• Strategy: Runtime behaviour selection; implement via interfaces or std::function.
+• Decorator: Dynamically add responsibilities; use composition or inheritance.
+• Bridge: Decouple abstraction from implementation; useful for cross-platform code.
+6.5 OOP Best Practices
+• Adhere to SOLID principles: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segrega-
+tion, Dependency Inversion.
+• Minimise inheritance depth; prefer composition for flexibility.
+• Use const methods and noexcept for performance and safety.
+7
+• Implement rule of five for resource-owning classes.
+• Use std::enable_if or concepts for SFINAE-based constraints.
+• Profile virtual function performance; consider CRTP or final classes for hot paths.

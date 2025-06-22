@@ -6,3 +6,30 @@ Cache Usage
 Makefiles
 
 Add questions and answers
+
+3 C++ Compiler Mechanics
+3.1 Compilation Pipeline
+• Preprocessing: Expands macros (#define), includes headers (#include), and processes conditionals
+(#ifdef). Generates preprocessed source.
+• Lexical Analysis: Tokenises source code into identifiers, keywords, and operators.
+• Parsing: Builds abstract syntax tree (AST) from tokens; validates syntax.
+• Semantic Analysis: Checks type correctness, resolves overloads, and enforces language rules (e.g.,
+access specifiers).
+• Code Generation: Translates AST to intermediate representation (IR), e.g., LLVM IR, then to target-
+specific assembly.
+• Optimisation: Applies transformations like constant propagation, loop invariant code motion, and
+dead code elimination.
+• Linking: Combines object files, resolves external symbols, and produces executable. Static vs. dynamic
+linking affects runtime performance.
+3.2 Optimisation Techniques
+• Inline Expansion: Replaces function calls with function body; use inline or rely on compiler heuristics.
+• Loop Optimisations: Unrolling, vectorisation (SIMD), and fusion to enhance cache locality and paral-
+lelism.
+• Constexpr Evaluation: Use constexpr for compile-time computations; extend with consteval (C++20)
+for guaranteed compile-time execution.
+• Move Semantics: Use std::move and rvalue references to eliminate unnecessary copies.
+• Profile-Guided Optimisation (PGO): Collect runtime data to optimise hot paths.
+• Link-Time Optimisation (LTO): Whole-program analysis during linking for cross-module inlining.
+• Branch Prediction: Minimise branches with [[likely]] and [[unlikely]] (C++20).
+• Cache Optimisation: Align data structures; use std::hardware_destructive_interference_size for cache-
+line awareness.
