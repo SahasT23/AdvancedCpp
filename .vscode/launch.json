@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/sahas/AdvancedCpp",
-      "program": "c:/Users/sahas/AdvancedCpp/build/Debug/outDebug",
+      "cwd": "c:/Users/sahas/AdvancedCpp/LCppWork/Chapter_0",
+      "program": "c:/Users/sahas/AdvancedCpp/LCppWork/Chapter_0/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
